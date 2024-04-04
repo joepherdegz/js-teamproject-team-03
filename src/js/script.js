@@ -1,3 +1,5 @@
+import { BASE_URL } from "./api.js";
+
 const options = {
   method: 'GET',
   headers: {

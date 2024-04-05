@@ -60,7 +60,7 @@ img {
 
 .srcline {
     display: flex;
-    width: 365px;
+    width: 360px;
     height: 2px;
     position: absolute;
     color: white;

@@ -60,7 +60,7 @@ img {
 
 .srcline {
     display: flex;
-    width: 300px;
+    width: 365px;
     height: 2px;
     position: absolute;
     color: white;
@@ -103,3 +103,4 @@ h1 {
 .libr:hover,
 .homebtn:hover {
     cursor: pointer;
+}

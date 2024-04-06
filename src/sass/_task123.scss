@@ -58,8 +58,6 @@ body {
     gap: 20px;
 }
 
-
-
 .libr,
 .homebtn {
     font-weight: bold;
@@ -77,9 +75,9 @@ body {
 .header-link::after {
     content: '';
     position: relative;
-    top: 2px;
+    top: 1px;
     width: 0;
-    height: 1px;
+    height: 3px;
     border-radius: 1px;
     background-color: #FD9222;
     transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);

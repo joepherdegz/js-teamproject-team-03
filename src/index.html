@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
 
 <head>
   <meta charset="UTF-8" />
@@ -52,3 +53,56 @@
 </body>
 
 </html>
+=======
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page title</title>
+  <link rel="stylesheet" href="./sass/index.scss" />
+  <!-- <script type="module" src="./index.js"></script> -->
+  <link rel="stylesheet" href="./css/styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <!-- ❗️❗️❗️ Add partials like so for every page -->
+  <!-- <include src="./partials/example.html"></include> -->
+  
+  <header class="header">
+    <div class="filmtitle">
+      <img class="film" src="./images/film.png" alt="film">
+      <h1>Filmoteka</h1>
+    </div>
+
+    <form class="searchform" id="search-form">
+      <input type="text" name="query" autocomplete="off" placeholder="Search for movies..." id="search-input">
+      <button class="search-button" type="submit"><i class="fa fa-search"></i></button>
+    </form>
+    <img class="srcline" src="./images/Line 1.png" alt="line">
+
+    <div class="mylibrary">
+      <button class="homebtn" type="submit">HOME</button>
+      <button class="libr" type="submit">MY LIBRARY</button>
+    </div>
+  </header>
+  <main class="main-content">
+    <section class="section">
+      <div class="container">
+        <div class="gallery">
+          <!-- Video Cards -->
+        </div>
+      </div>
+    </section>
+    <div id="movies-container"></div>
+  </main>
+
+  <!-- ❗️❗️❗️ Add partials like so for every page -->
+
+  <include src="partials/task4_footer.html"></include>
+
+  <script src="./js/script.js" type="module"></script>
+
+</body>
+
+</html>
+>>>>>>> f2adf00eb2943f6a7431a4493030571cbbe023fb

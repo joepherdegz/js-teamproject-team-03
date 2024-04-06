@@ -1,21 +1,106 @@
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0;
-}
-
 body {
-  font-family: 'Roboto', sans-serif;
-  margin: 0;
+    margin: 0;
+    font-family: 'roboto', sans-serif;
 }
 
 img {
-  display: block;
-  width: 270px;
-  height: 150px;
-  object-fit: cover;
+    display: block;
+    width: 270px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.header {
+    background-image: url('../images/Rectangle 1.png');
+    background-size: cover;
+    background-position: center;
+    padding: 50px 0;
+}
+
+.filmtitle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 200px;
+}
+
+.filmtitle:hover {
+    cursor: pointer;
+}
+
+.search-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+
+#search-input {
+    border: none;
+    background: none;
+    color: white;
+}
+
+#search-input:focus {
+    border: none;
+    background: none;
+    border-style: none;
+    outline: none;
+}
+
+.searchform {
+    display: flex;
+    background-color: none;
+    justify-content: center;
+    border: none;
+    background: none;
+    color: white;
+    gap: 90px;
+}
+
+.srcline {
+    display: flex;
+    width: 360px;
+    height: 2px;
+    position: absolute;
+    color: white;
+    left: 500px;
+}
+
+h1 {
+    color: white;
+}
+
+.mylibrary {
+    display: flex;
+    justify-content: right;
+    padding-bottom: 50px;
+    margin-right: 150px;
+    margin-top: -60px;
+    gap: 30px;
+}
+
+.film {
+    width: 30px;
+    height: 30px;
+}
+
+.libr,
+.homebtn {
+    font-weight: bold;
+    border: none;
+    background: none;
+    color: white;
+}
+
+.homebtn {
+    font-weight: 700;
+    font-size: 15px;
+    border-bottom: 2px solid orangered;
+    border-width: -10px;
+}
+
+.libr:hover,
+.homebtn:hover {
+    cursor: pointer;
 }

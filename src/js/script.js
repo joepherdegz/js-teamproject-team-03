@@ -74,7 +74,7 @@ function showMovies(data) {
     main.innerHTML = '';
 
     data.forEach(movie => {
-        const { title, poster_path, release_date, vote_average } = movie;
+        const { title, poster_path, release_date } = movie;
         const movieEl = document.createElement('div');
         movieEl.classList.add('movie');
         movieEl.innerHTML = `
@@ -85,7 +85,6 @@ function showMovies(data) {
                 <h3>${title}</h3>
                 <div class="movie-details">
                     <span id="release_date" class="${release_date}">${release_date}</span>
-                    <span id="vote_average" class="${vote_average}">${vote_average}</span>
                 </div>
             </div>        
         `

@@ -22,6 +22,7 @@ const main = document.getElementById('main');
 const form = document.getElementById('search-form');
 const search = document.getElementById('search-input');
 const galleryEl = document.getElementById('gallery');
+const loader = document.querySelector('.loader-container');
 
 // PAGINATION
 const prev = document.getElementById('prev');
@@ -34,11 +35,17 @@ var prevPage = 3;
 var lastUrl = '';
 var totalPages = 100;
 
+let currentMovieTitle;
+let queue = [];
+localStorage.setItem("movie-queue", JSON.stringify(queue));
+
 getMovies(API_URL);
 
 // DISPLAY MOVIE CARDS
 function getMovies(url) {
     lastUrl = url;
+    main.classList.toggle('is-hidden');
+    loader.classList.toggle('is-hidden'); 
 
     fetch(url)
         .then(res => res.json())
@@ -50,6 +57,8 @@ function getMovies(url) {
                 nextPage = currentPage + 1;
                 prevPage = currentPage - 1;
                 totalPages = data.total_pages;
+                main.classList.toggle('is-hidden');
+                loader.classList.toggle('is-hidden');  
 
                 current.innerText = currentPage;
                 if(currentPage <= 1){
@@ -64,6 +73,8 @@ function getMovies(url) {
                 }
 
             } else {
+                main.classList.toggle('is-hidden');
+                loader.classList.toggle('is-hidden');  
                 main.innerHTML = `<h1 class="no-results">No Results Found</h1>`
             }
 
@@ -135,3 +146,10 @@ function pageCall(page) {
         getMovies(url);
     }
 }
+
+//Clicking a movie
+main.addEventListener('click', (e) => {
+    let currentMovie = e.target.parentElement;
+    currentMovieTitle = currentMovie.lastElementChild.firstElementChild.innerText;
+    console.log(currentMovieTitle)
+})

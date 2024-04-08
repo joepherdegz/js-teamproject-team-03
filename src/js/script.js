@@ -77,7 +77,9 @@ var totalPages = 100;
 
 let currentMovieTitle;
 let queue = [];
+let watched = [];
 localStorage.setItem("movie-queue", JSON.stringify(queue));
+localStorage.setItem("movie-watched", JSON.stringify(watched));
 
 getMovies(API_URL);
 
@@ -193,4 +195,27 @@ main.addEventListener('click', (e) => {
     let currentMovie = e.target.parentElement;
     currentMovieTitle = currentMovie.lastElementChild.firstElementChild.innerText;
     console.log(currentMovieTitle)
+})
+
+//Add to Watched (localStorage)
+addToWatchedBtn.addEventListener('click', () => {
+    watched.includes(currentMovieTitle) ? 
+        alert(`${currentMovieTitle} has been watched already`) :
+        watched.push(currentMovieTitle);
+        localStorage.setItem('movie-watched', JSON.stringify(watched));
+})
+
+//Add to Queue (localStorage)
+addToQueuBtn.addEventListener('click', () => {
+    queue.includes(currentMovieTitle) ? 
+        alert(`${currentMovieTitle} has been added to the queue already`) :
+        queue.push(currentMovieTitle);
+        localStorage.setItem('movie-queue', JSON.stringify(queue));
+})
+
+//Pressing escape to close modal
+document.body.addEventListener("keydown", event => {
+    if(event.code === "Escape"){
+        closeModal();
+    }
 })

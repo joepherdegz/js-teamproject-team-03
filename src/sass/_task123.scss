@@ -3,6 +3,44 @@ body {
     font-family: 'roboto', sans-serif;
 }
 
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.movie {
+    width: 300px;
+    margin: 1rem;
+    border-radius: 5px;
+    box-shadow: 0.2px 4px 5px rgba(0,0,0,0.1);
+    background-color: rgb(226, 221, 221);
+    position: relative;
+    overflow: hidden;
+}
+
+
+.movie img{
+    width: 100%;
+}
+
+.movie-info {
+    padding: 10px;
+}
+
+#release_date,
+#vote_average{
+    color: orangered;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.movie-details{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
 .header {
     background-image: url('../images/Rectangle 1.png');
     background-size: cover;
@@ -142,6 +180,32 @@ body {
     color: white;
 }
 
+
+.pagination{
+    display: flex;
+    margin: 10px 40px;
+    align-items: center;
+    justify-content: center;
+    color: rgb(12, 7, 5);
+}
+
+.page{
+    padding: 20px;
+    cursor: pointer;
+}
+
+.page.disabled{
+    cursor: not-allowed;
+    color: grey;
+}
+
+.current{
+    padding: 10px;
+    border-radius: 25%;
+    border: 5px solid rgb(255, 51, 0);
+    font-size: 20px;
+    font-weight: 600;
+}
 
 @media screen and (min-width: 768px) {
     .header-top-left {

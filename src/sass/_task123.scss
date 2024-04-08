@@ -19,7 +19,6 @@ main {
     overflow: hidden;
 }
 
-
 .movie img{
     width: 100%;
 }
@@ -98,12 +97,15 @@ main {
 }
 
 .libr,
-.homebtn {
+.homebtn,
+.watched,
+.queue {
     font-weight: bold;
     border: none;
     background: none;
     color: white;
     font-size: 12px;
+    text-decoration: none;
 }
 
 .libr:hover,
@@ -129,11 +131,6 @@ main {
 
 .header-link:focus::after {
     width: 99%;
-}
-
-.homebtn {
-    text-decoration: none;
-    padding-top: 1px;
 }
 
 .header-bottom {
@@ -180,6 +177,18 @@ main {
     color: white;
 }
 
+.lib-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.watched,
+.queue {
+    width: 136px;
+    height: 44px;
+    border: 1px solid;
+    border-radius: 5%;
+}
 
 .pagination{
     display: flex;

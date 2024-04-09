@@ -4,20 +4,6 @@ const API_URL = BASE_URL + '/discover/movie?sort_by-popularity.desc&' + API_KEY;
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 const searchURL = BASE_URL + '/search/movie?'+API_KEY;
 
-const options = {
-    params: {
-        key: API_KEY,
-        query: "",
-        include_adult: false,
-        language: "en-US",
-        primary_release_year: "",
-        page: 1,
-        region: "",
-        year: "",
-       
-    }
-}
-
 // MODAL SECTION
 const modal = document.getElementById('myModal');
 const modalPoster = document.getElementById('modal-poster');

@@ -27,19 +27,26 @@ main {
     padding: 10px;
 }
 
-#release_date,
 #vote_average{
-    color: orangered;
-    font-size: 16px;
+    color: #fff;
+    font-size: 12px;
     font-weight: bold;
+    background-color: orangered;
+    width: 30px;
+    display: flex;
+    justify-content: center;
 }
 
 .movie-details{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: baseline;
+    color: orangered;
+    font-size: 12px;
+    font-weight: bold;
+    gap: 5px
+    
 }
-
 .header {
     background-image: url('../images/Rectangle 1.png');
     background-size: cover;

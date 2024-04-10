@@ -4,11 +4,12 @@ const API_URL = BASE_URL + '/discover/movie?sort_by-popularity.desc&' + API_KEY;
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 const searchURL = BASE_URL + '/search/movie?'+API_KEY;
 
-//localStorage 
-let currentMovieTitle, currentMovieID;
-let queue = JSON.parse(localStorage.getItem("movie-queue"));
-let watched = JSON.parse(localStorage.getItem("movie-watched"));
+//localStorage
+let currentMovieTitle, currentMovieID, queue, watched;
+JSON.parse(localStorage.getItem("movie-queue")) === null? queue = [] : queue = JSON.parse(localStorage.getItem("movie-queue"));
 localStorage.setItem("movie-queue", JSON.stringify(queue));
+
+JSON.parse(localStorage.getItem("movie-watched")) === null? watched = [] : watched = JSON.parse(localStorage.getItem("movie-watched")) ;
 localStorage.setItem("movie-watched", JSON.stringify(watched));
 
 // MODAL SECTION

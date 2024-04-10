@@ -6,8 +6,8 @@ const searchURL = BASE_URL + '/search/movie?'+API_KEY;
 
 //localStorage 
 let currentMovieTitle, currentMovieID;
-let queue = [];
-let watched = [];
+let queue = JSON.parse(localStorage.getItem("movie-queue"));
+let watched = JSON.parse(localStorage.getItem("movie-watched"));
 localStorage.setItem("movie-queue", JSON.stringify(queue));
 localStorage.setItem("movie-watched", JSON.stringify(watched));
 

@@ -5,6 +5,7 @@ const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 const searchURL = BASE_URL + '/search/movie?' + API_KEY;
 const getGenres = BASE_URL + '/genre/movie/list' + API_KEY;
 
+
 const options = {
   params: {
     key: API_KEY,
@@ -17,6 +18,15 @@ const options = {
     year: '',
   },
 };
+
+//localStorage
+let currentMovieTitle, currentMovieID, queue, watched;
+JSON.parse(localStorage.getItem("movie-queue")) === null? queue = [] : queue = JSON.parse(localStorage.getItem("movie-queue"));
+localStorage.setItem("movie-queue", JSON.stringify(queue));
+
+JSON.parse(localStorage.getItem("movie-watched")) === null? watched = [] : watched = JSON.parse(localStorage.getItem("movie-watched")) ;
+localStorage.setItem("movie-watched", JSON.stringify(watched));
+
 
 // MODAL SECTION
 const modal = document.getElementById('myModal');
@@ -33,6 +43,7 @@ const closeBtn = document.getElementsByClassName('close')[0];
 
 // function to open the modal with movie details
 function openModal(movie) {
+
   modalPoster.src = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
   modalTitle.textContent = movie.title.toUpperCase();
   modalVote.textContent =
@@ -42,6 +53,18 @@ function openModal(movie) {
   modalGenre.textContent = movie.genre;
   modalOverview.textContent = movie.overview;
   modal.style.display = 'block';
+
+    modalPoster.src = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
+    modalTitle.textContent = movie.title;
+    modalVote.textContent = movie.vote_average+'/'+movie.vote_count;
+    modalPopularity.textContent = movie.popularity;
+    modalOrigTitle.textContent = movie.original_title;
+    modalGenre.textContent = movie.genre_ids;
+    modalOverview.textContent = movie.overview;
+    modal.style.display = "block";
+    currentMovieID = movie.id;
+    currentMovieTitle = movie.original_title;
+
 }
 
 // function to close the modal
@@ -76,11 +99,13 @@ var prevPage = 3;
 var lastUrl = '';
 var totalPages = 100;
 
+
 let currentMovieTitle;
 let queue = [];
 let watched = [];
 localStorage.setItem('movie-queue', JSON.stringify(queue));
 localStorage.setItem('movie-watched', JSON.stringify(watched));
+
 
 getMovies(API_URL);
 
@@ -198,6 +223,7 @@ function pageCall(page) {
   }
 }
 
+
 //Clicking a movie
 main.addEventListener('click', e => {
   let currentMovie = e.target.parentElement;
@@ -220,6 +246,24 @@ addToQueuBtn.addEventListener('click', () => {
     : queue.push(currentMovieTitle);
   localStorage.setItem('movie-queue', JSON.stringify(queue));
 });
+
+//Add to Watched (localStorage)
+addToWatchedBtn.addEventListener('click', () => {
+    watched.includes(currentMovieID) ? 
+        alert(`${currentMovieTitle} has been watched already`) :
+        watched.push(currentMovieID);
+        localStorage.setItem('movie-watched', JSON.stringify(watched));
+})
+
+//Add to Queue (localStorage)
+addToQueuBtn.addEventListener('click', () => {
+    queue.includes(currentMovieID) ? 
+        alert(`${currentMovieTitle} has been added to the queue already`) :
+        queue.push(currentMovieID);
+        localStorage.setItem('movie-queue', JSON.stringify(queue));
+})
+
+
 
 //Pressing escape to close modal
 document.body.addEventListener('keydown', event => {

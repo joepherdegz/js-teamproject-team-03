@@ -95,6 +95,7 @@ getMovies(API_URL);
 // DISPLAY MOVIE CARDS
 function getMovies(url) {
   lastUrl = url;
+  
   main.classList.toggle('is-hidden');
   loader.classList.toggle('is-hidden');
 

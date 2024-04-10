@@ -12,35 +12,47 @@ main {
 .movie {
     width: 300px;
     margin: 1rem;
-    border-radius: 5px;
-    box-shadow: 0.2px 4px 5px rgba(0,0,0,0.1);
-    background-color: rgb(226, 221, 221);
+    background-color: none;
     position: relative;
     overflow: hidden;
 }
 
-
-.movie img{
+img{
     width: 100%;
+    border-radius: 2%;
 }
 
 .movie-info {
-    padding: 10px;
+    font-size: 12px;
+    margin: 0;
 }
 
-#release_date,
+h3{
+    margin: 0;
+    padding-top: 12px;
+    padding-bottom: 2px;
+}
+
 #vote_average{
-    color: orangered;
-    font-size: 16px;
+    color: #fff;
+    font-size: 12px;
     font-weight: bold;
+    background-color: orangered;
+    width: 30px;
+    display: flex;
+    justify-content: center;
 }
 
 .movie-details{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: baseline;
+    color: orangered;
+    font-size: 12px;
+    font-weight: bold;
+    gap: 5px
+    
 }
-
 .header {
     background-image: url('../images/Rectangle 1.png');
     background-size: cover;
@@ -89,6 +101,7 @@ main {
 
 .header-top-right {
     padding-right: 50px;
+    padding-top: 10px;
 }
 
 .mylibrary {
@@ -97,12 +110,15 @@ main {
 }
 
 .libr,
-.homebtn {
+.homebtn,
+.watched,
+.queue {
     font-weight: bold;
     border: none;
     background: none;
     color: white;
     font-size: 12px;
+    text-decoration: none;
 }
 
 .libr:hover,
@@ -123,16 +139,11 @@ main {
 }
 
 .header-link:hover::after {
-    width: 100%;
+    width: 99%;
 }
 
 .header-link:focus::after {
-    width: 100%;
-}
-
-.homebtn {
-    text-decoration: none;
-    padding-top: 1px;
+    width: 99%;
 }
 
 .header-bottom {
@@ -179,6 +190,26 @@ main {
     color: white;
 }
 
+.lib-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.watched,
+.queue {
+    width: 136px;
+    height: 44px;
+    border: 1px solid;
+    border-radius: 5%;
+}
+
+.watched:hover,
+.queue:hover {
+    background-color: orangered;
+    border: none;
+    cursor: pointer;
+    transition: 450ms cubic-bezier(0.4, 0, 0.2, 1);
+}
 
 .pagination{
     display: flex;
@@ -186,6 +217,10 @@ main {
     align-items: center;
     justify-content: center;
     color: rgb(12, 7, 5);
+    padding-top: 50px;
+    padding-bottom: 50px;
+    gap: 5px;
+
 }
 
 .page{
@@ -222,17 +257,36 @@ main {
 .modal-content {
     background-color: #fefefe;
     margin: 15% auto;
-    padding: 20px;
+    padding-top: 10px;
+    padding-bottom: 30px;
     border: 1px solid #888;
-    width: 90%;
-    max-width: 882px;
+    width: 280px;
+    height: auto;
 }
 
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-poster-container {
+    width: 240px;
+    height: auto;
+}
+.modal-poster {
+    width: 240px;
+    height: auto;
+    object-fit: contain;
+}
 .close {
     color: #aaa;
-    float: right;
     font-size: 28px;
     font-weight: bold;
+    position: relative;
+    right: -250px;
+    top: -5px;
 }
 
 .close:hover,
@@ -242,20 +296,39 @@ main {
     cursor: pointer;
 }
 
-.modal-body {
-    display: flex;
-}
-
-#modal-poster {
-    width: 300px;
-    height: auto;
-    margin-right: 20px;
-}
-
 #modal-details {
     flex-grow: 1;
+    font-size: 12px;
+    width: 240px;
+}
+.movie-stats {
+    display: flex;
+    flex-direction: row;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    text-align: left;
 }
 
+.labels,
+.stats {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 10px ;
+}
+
+.labels{ 
+    width: 40%;
+}
+.label{ 
+        color: #8C8C8C;
+}
+
+.stats {
+    color: black;
+    font-weight: bold;
+}
 
 .modal-buttons {
     margin-top: 20px;
@@ -265,6 +338,12 @@ main {
     align-items: center;
 }
 
+#modal-overview {
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 20px;
+    text-align: left;
+}
 #addToWatchedBtn,
 #addToQueuBtn {
     padding: 20px;
@@ -288,7 +367,26 @@ main {
     .header-top-right {
         padding-right: 80px;
     }
-
+    .modal-content {
+        width: 618px;
+        height: auto;
+    }
+    .modal-poster-container {
+        width: 290px;
+        height: auto;
+    }
+    .modal-poster {
+        width: 264px;
+        height: auto;
+    }
+    .modal-body {
+        flex-direction: row;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .close {
+        right: -590px;
+    }
 }
 
 @media screen and (min-width: 480px) {
@@ -296,4 +394,44 @@ main {
         display: flex;
     }
     
+}
+
+@media screen and (min-width: 1024px) {
+    h2 {
+        font-size: 30px;
+    }
+    .modal-content {
+        width: 882px;
+        height: auto;
+    }
+    .modal-poster-container  {
+        width: 420px;
+        height: auto;
+    }
+    .modal-poster {
+        width: 396px;
+        height: auto;
+    }
+    .close {
+        right: -850px;
+    }
+
+    
+}
+.pagination-button {
+    width: 40px;
+    height: 40px;
+    font-weight: bold;
+    border: none;
+    background: none;
+    font-size: 12px;
+}
+
+.pagination-button:hover{
+    background-color: orangered;
+    color: white;
+    border-radius: 10%;
+    transition: 450ms cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+   
 }

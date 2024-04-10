@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TASK 13-15</title>
+    <link rel="stylesheet" href="/src/sass/_library.scss" />
+    <!-- <script type="module" src="./index.js"></script> -->
+    <!-- <link rel="stylesheet" href="./css/styles.css" /> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <!-- ❗️❗️❗️ Add partials like so for every page -->
+    <!-- <include src="./partials/example.html"></include> -->
+    <include src="./partials/task21_loader.html"></include>
+
+    <header class="header">
+        <div class="header-top">
+            <div class="header-top-left">
+                <a class="filmtitle" href="/src/index.html">
+                    <img class="film" src="/src/images/film.png" alt="film">
+                    <h1 class="page-title">Filmoteka</h1>
+                </a>
+            </div>
+            <div class="header-top-right">
+                <div class="mylibrary">
+                    <a class="header-link homebtn" href="/src/index.html">HOME</a>
+                    <a class="header-link libr active" href="/src/partials/library.html" type="submit">MY LIBRARY</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="header-bottom">
+            <form class="searchform" id="search-form">
+                <input type="text" name="query" autocomplete="off" placeholder="Search for movies..." id="search-input">
+                <button class="search-button" type="submit"><i class="fa fa-search"></i></button>
+            </form>
+            <img class="srcline" src="/src/images/Line 1.png" alt="line">
+        </div>
+
+    </header>
+
+    <include src="partials/task21_loader.html"></include>
+    <main class="main-content" id="main">
+        <section>
+            <div class="watchedmovies" id="watched-movies">
+                <button id="watched-btn" class="button-with-heading">
+                    <span class="heading-text">Watched Movies</span>
+                </button>
+                <button id="queue-btn" class="button-with-heading">
+                    <span class="heading-text">Queue</span>
+                </button>
+            </div>
+            <!-- Container for displaying movies -->
+            <div id="movies-list"></div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="gallery">
+                    <!-- Video Cards -->
+                </div>
+            </div>
+        </section>
+        <div id="movies-container"></div>
+    </main>
+
+    <!-- PAGINATION SECTION -->
+    <div class="pagination">
+        <div class="page" id="prev">Previous Page</div>
+        <div class="current" id="current">1</div>
+        <div class="page" id="next">Next Page</div>
+    </div>
+
+    <!-- Modal Section -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-body">
+                <img class="modal-poster" id="modal-poster" src="/src/images/Rectangle 18.jpg" alt="title">
+                <div id="modal-details">
+                    <h2 id="modal-title">A FISTFUL OF LEAD</h2>
+                    <p id="modal-vote">Vote/Votes:</p>
+                    <p id="modal-popularity">Popularity:</p>
+                    <p id="modal-original-title">Title:</p>
+                    <p id="modal-genre">Genre:</p>
+                    <h3>About</h3>
+                    <p id="modal-overview">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat provident
+                        illo, tempore doloribus culpa dolores repellat, laborum aperiam quasi, officiis beatae quas!
+                        Quaerat, s
+                        int blanditiis facilis alias ad tenetur pariatur.</p>
+                    <div class="modal-buttons">
+                        <button id="addToWatchedBtn">Add to Watched</button>
+                        <button id="addToQueuBtn">Add to Queue</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ❗️❗️❗️ Add partials like so for every page -->
+
+    <include src="partials/task4_footer.html"></include>
+    <script src="/src/index.js" type="module"></script>
+
+</body>
+
+</html>

@@ -89,23 +89,6 @@ const galleryEl = document.getElementById('gallery');
 const loader = document.querySelector('.loader-container');
 
 // PAGINATION
-const prev = document.getElementById('prev');
-const next = document.getElementById('next');
-const current = document.getElementById('current');
-
-var currentPage = 1;
-var nextPage = 2;
-var prevPage = 3;
-var lastUrl = '';
-var totalPages = 100;
-
-
-let currentMovieTitle;
-let queue = [];
-let watched = [];
-localStorage.setItem('movie-queue', JSON.stringify(queue));
-localStorage.setItem('movie-watched', JSON.stringify(watched));
-
 
 getMovies(API_URL);
 

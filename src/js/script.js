@@ -190,7 +190,7 @@ next.addEventListener('click', () => {
   }
 });
 
-function pageCall(page) {
+export function pageCall(page) {
   let urlSplit = lastUrl.split('?');
   let queryParams = urlSplit[1].split('&');
   let key = queryParams[queryParams.length - 1].split('=');

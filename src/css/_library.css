@@ -254,7 +254,7 @@ main {
 
 }
 
-// Watched Movies
+/* Watched Movies
 /* Basic Reset */
 * {
     box-sizing: border-box;
@@ -262,15 +262,15 @@ main {
     padding: 0;
 }
 
-// body {
+/* // body {
 //     font-family: 'Arial', sans-serif;
 //     background-color: #f4f4f4;
 //     color: #333;
 //     line-height: 1.6;
 //     padding: 20px;
-// }
+// } */
 
-// .watchedmovies {
+/* // .watchedmovies {
 //     margin: auto;
 //     width: 80%;
 //     background: #fff;
@@ -278,33 +278,33 @@ main {
 //     border-radius: 8px;
 //     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
-// }
+// } */
 
-// .movies-list {
+/* // .movies-list {
 //     display: grid;
 //     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 //     gap: 20px;
-// }
+// } */
 
-// .movies-list {
+/* // .movies-list {
 //     background: #eee;
 //     border-radius: 8px;
 //     padding: 10px;
 //     box-shadow: 0 5px 15px rgba(0, 0, 0, .1);
-// }
+// } */
 
-// .button-with-heading {
+/* // .button-with-heading {
 //     background-color: transparent;
 //     border: none;
 //     padding: 10px;
 
-// }
+// } */
 
-// .heading-text {
+/* // .heading-text {
 //     font-size: 1.5rem;
 //     font-weight: bold;
 
-// }
+// } */
 
 .button-with-heading {
     margin: 10px;

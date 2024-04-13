@@ -34,13 +34,21 @@ fetch(getGenres)
     .then(response => response.json())
     .then(data => {
         genres = data.genres;
-      getMovies(API_URL, genres); // Call getMovies with genres
+      // getMovies(API_URL, genres); // Call getMovies with genres
       showMovies(data, genres)
     })
     .catch(error => {
-        console.error('Error fetching genres:', error);
+        // console.error('Error fetching genres:', error);
     });
 
+    fetch(API_URL)
+    .then(response => response.json())
+    .then(data => {
+        showMovies(data.results, genres);
+    })
+    .catch(error => {
+        console.error('Error fetching movies:', error);
+    });
   // function to open the modal with movie details
   function openModal(movie) {
 
@@ -61,18 +69,6 @@ fetch(getGenres)
 
     modalOverview.textContent = movie.overview;
     modal.style.display = 'block';
-
-    // modalPoster.src = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
-    // modalTitle.textContent = movie.title;
-    // modalVote.textContent = movie.vote_average + '/' + movie.vote_count;
-    // modalPopularity.textContent = movie.popularity;
-    // modalOrigTitle.textContent = movie.original_title;
-    // modalGenre.textContent = movie.genre_ids;
-    // modalOverview.textContent = movie.overview;
-    // modal.style.display = "block";
-    // currentMovieID = movie.id;
-    // currentMovieTitle = movie.original_title;
-
   }
 
   // function to close the modal
@@ -98,8 +94,8 @@ fetch(getGenres)
 
   // PAGINATION
 
-  getMovies(API_URL);
   let lastUrl;
+  getMovies(API_URL);
   // DISPLAY MOVIE CARDS
   function getMovies(url) {
     lastUrl = url;

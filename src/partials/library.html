@@ -7,14 +7,8 @@
 
     <title>Filmoteka - js-teamproject-team3 </title>
     <link rel="stylesheet" href="/src/sass/index.scss"/>
-    <!-- <script type="module" src="./index.js"></script> -->
-    <!-- <link rel="stylesheet" href="/src/css/styles.css" /> -->
 
-    <title>TASK 13-15</title>
-    <!-- <link rel="stylesheet" href="/src/sass/_library.scss" /> -->
-    <!-- <script type="module" src="./index.js"></script> -->
-    <!-- <link rel="stylesheet" href="./css/styles.css" /> -->
-
+    
 </head>
 
 <body>
@@ -43,8 +37,8 @@
         <div class="header-bottom">
 
             <form class="lib-buttons" id="lib-buttons">
-                <button class="watched" type="submit">WATCHED</button>
-                <button class="queue" type="submit">QUEUE</button>
+                <button id="watched-btn" type="submit">WATCHED</button>
+                <button id="queue-btn" type="submit">QUEUE</button>
             </form>  
         </div>
 
@@ -105,7 +99,8 @@
     </div>
 
     <!-- ❗️❗️❗️ Add partials like so for every page -->
-
+    <script src="/src/js/pagination.js" type="module"></script>
+    <script src="/src/js/library.js" type="module"></script>
     <include src="partials/task4_footer.html"></include>
 
 

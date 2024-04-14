@@ -1,4 +1,3 @@
- 
   const BASE_URL = 'https://api.themoviedb.org/3';
   const API_KEY = 'api_key=b5e824a3d922f68ba211fcf6dbdcb6f5';
   const API_URL = BASE_URL + '/discover/movie?sort_by-popularity.desc&' + API_KEY;
@@ -16,16 +15,16 @@
 
 
   // MODAL SECTION
-  const modal = document.getElementById('myModal');
-  const modalPoster = document.getElementById('modal-poster');
-  const modalTitle = document.getElementById('modal-title');
-  const modalVote = document.getElementById('modal-vote');
-  const modalPopularity = document.getElementById('modal-popularity');
-  const modalOrigTitle = document.getElementById('modal-original-title');
-  const modalGenre = document.getElementById('modal-genre');
-  const modalOverview = document.getElementById('modal-overview');
-  const addToWatchedBtn = document.getElementById('addToWatchedBtn');
-  const addToQueuBtn = document.getElementById('addToQueuBtn');
+const modal = document.getElementById('myModal');
+const modalPoster = document.getElementById('modal-poster');
+const modalTitle = document.getElementById('modal-title');
+const modalVote = document.getElementById('modal-vote');
+const modalPopularity = document.getElementById('modal-popularity');
+const modalOrigTitle = document.getElementById('modal-original-title');
+const modalGenre = document.getElementById('modal-genre');
+const modalOverview = document.getElementById('modal-overview');
+const addToWatchedBtn = document.getElementById('addToWatchedBtn');
+const addToQueuBtn = document.getElementById('addToQueuBtn');
 const closeBtn = document.getElementsByClassName('close')[0];
   
 let genres;
@@ -50,7 +49,7 @@ fetch(getGenres)
         console.error('Error fetching movies:', error);
     });
   // function to open the modal with movie details
-  function openModal(movie) {
+function openModal(movie) {
 
     modalPoster.src = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
     modalTitle.textContent = movie.title.toUpperCase();
@@ -66,13 +65,12 @@ fetch(getGenres)
     }).join(', ');
     
     modalGenre.textContent = movieGenres;
-
     modalOverview.textContent = movie.overview;
     modal.style.display = 'block';
   }
 
   // function to close the modal
-  function closeModal() {
+function closeModal() {
     modal.style.display = 'none';
   }
 
@@ -89,67 +87,88 @@ fetch(getGenres)
   const main = document.getElementById('main');
   const form = document.getElementById('search-form');
   const search = document.getElementById('search-input');
-  const galleryEl = document.getElementById('gallery');
+  // const galleryEl = document.getElementById('gallery');
   const loader = document.querySelector('.loader-container');
-
+  
   // PAGINATION
-
-  let lastUrl;
+let lastUrl;
+let prev, next;
   getMovies(API_URL);
   // DISPLAY MOVIE CARDS
   function getMovies(url) {
     lastUrl = url;
-  
+    
     main.classList.toggle('is-hidden');
     loader.classList.toggle('is-hidden');
-
+    
     fetch(url)
-      .then(res => res.json())
-      .then(data => {
-        console.log(data.results);
-        if (data.results.length !== 0) {
-          showMovies(data.results);
-          currentPage = data.page;
-          nextPage = currentPage + 1;
-          prevPage = currentPage - 1;
-          totalPages = data.total_pages;
-          main.classList.toggle('is-hidden');
-          loader.classList.toggle('is-hidden');
-
+    .then(res => res.json())
+    .then(data => {
+      console.log(data.results);
+      if (data.results.length !== 0) {
+        showMovies(data.results);
+        currentPage = data.page;
+        nextPage = currentPage + 1;
+        prevPage = currentPage - 1;
+        totalPages = data.total_pages;
+        main.classList.toggle('is-hidden');
+        loader.classList.toggle('is-hidden');
+        
+        document.addEventListener('DOMContentLoaded', function () {
+          const current = document.getElementById('current');
           current.innerText = currentPage;
+        })
           if (currentPage <= 1) {
-            prev.classList.add('disabled');
-            next.classList.remove('disabled');
+          if (prev)  prev.classList.add('disabled');
+          if (next) next.classList.remove('disabled');
           } else if (currentPage >= totalPages) {
-            prev.classList.remove('disabled');
-            next.classList.add('disabled');
+          if (prev)  prev.classList.remove('disabled');
+          if (next)  next.classList.add('disabled');
           } else {
-            prev.classList.remove('disabled');
-            next.classList.remove('disabled');
-          }
+           if (prev)  prev.classList.remove('disabled');
+           if (next)  next.classList.remove('disabled');
+        }
+        
         } else {
           main.classList.toggle('is-hidden');
           loader.classList.toggle('is-hidden');
           main.innerHTML = `<h1 class="no-results">No Results Found</h1>`;
         }
+    });
+    // Add event listeners for prev and next inside this block
+            prev = document.getElementById('prev');
+            next = document.getElementById('next');
+
+            // function for previous page
+    if (prev) {
+      prev.addEventListener('click', () => {
+        if (prevPage > 0) {
+          pageCall(prevPage);
+        }
       });
+    }
+            // function for the next page
+    if (next) {
+      next.addEventListener('click', () => {
+        if (nextPage <= totalPages) {
+          pageCall(nextPage);
+        }
+      });
+    }
   }
-
-
   
-function showMovies(data) {
+  function showMovies(data) {
     main.innerHTML = '';
-
     data.forEach(movie => {
       const { title, poster_path, release_date, genre_ids } = movie;
       const movieEl = document.createElement('div');
       movieEl.classList.add('movie');
 
       const movieGenres = genre_ids && Array.isArray(genres)
-            ? genre_ids.map(genreId => {
-                const genre = genres.find(genre => genre.id === genreId);
-                return genre ? genre.name : '';
-            }).join(', ')
+        ? genre_ids.map(genreId => {
+          const genre = genres.find(genre => genre.id === genreId);
+          return genre ? genre.name : '';
+        }).join(', ')
         : '';
       
       movieEl.innerHTML = `
@@ -162,22 +181,18 @@ function showMovies(data) {
             <div class="movie-info">
                 <h3>${title.toUpperCase()}</h3>
                 <div class="movie-details">
-                <span id="genre">${movieGenres}</span> |
-                <span id="release_date" class="${release_date}">${release_date.slice(
-                  0,
-                  4
-                  )}</span>
-                  </div>
-                  </div>        
+                <div>${movieGenres} | ${release_date.slice(0,4)}</div>
+                </div>
+            </div>        
                   `;
-                  movieEl.addEventListener('click', function () {
-                    openModal(movie);
-                  });
+      movieEl.addEventListener('click', function () {
+        openModal(movie);
+      });
       main.appendChild(movieEl);
     });
   }
 
-  form.addEventListener('submit', e => {
+form.addEventListener('submit', e => {
     e.preventDefault();
 
     const searchTerm = search.value;
@@ -203,7 +218,7 @@ function showMovies(data) {
     }
   });
 
-  function pageCall(page) {
+export function pageCall(page) {
     let urlSplit = lastUrl.split('?');
     let queryParams = urlSplit[1].split('&');
     let key = queryParams[queryParams.length - 1].split('=');
@@ -222,14 +237,14 @@ function showMovies(data) {
 
 
   //Clicking a movie
-  main.addEventListener('click', e => {
+main.addEventListener('click', e => {
     let currentMovie = e.target.parentElement;
     currentMovieTitle = currentMovie.lastElementChild.firstElementChild.innerText;
     console.log(currentMovieTitle);
   });
 
   //Add to Watched (localStorage)
-  addToWatchedBtn.addEventListener('click', () => {
+addToWatchedBtn.addEventListener('click', () => {
     watched.includes(currentMovieTitle)
       ? alert(`${currentMovieTitle} has been watched already`)
       : watched.push(currentMovieTitle);
@@ -237,7 +252,7 @@ function showMovies(data) {
   });
 
   //Add to Queue (localStorage)
-  addToQueuBtn.addEventListener('click', () => {
+addToQueuBtn.addEventListener('click', () => {
     queue.includes(currentMovieTitle)
       ? alert(`${currentMovieTitle} has been added to the queue already`)
       : queue.push(currentMovieTitle);
@@ -245,7 +260,7 @@ function showMovies(data) {
   });
 
   //Add to Watched (localStorage)
-  addToWatchedBtn.addEventListener('click', () => {
+addToWatchedBtn.addEventListener('click', () => {
     watched.includes(currentMovieID) ?
       alert(`${currentMovieTitle} has been watched already`) :
       watched.push(currentMovieID);
@@ -253,7 +268,7 @@ function showMovies(data) {
   })
 
   //Add to Queue (localStorage)
-  addToQueuBtn.addEventListener('click', () => {
+addToQueuBtn.addEventListener('click', () => {
     queue.includes(currentMovieID) ?
       alert(`${currentMovieTitle} has been added to the queue already`) :
       queue.push(currentMovieID);
@@ -263,8 +278,8 @@ function showMovies(data) {
 
 
   //Pressing escape to close modal
-  document.body.addEventListener('keydown', event => {
+document.body.addEventListener('keydown', event => {
     if (event.code === 'Escape') {
       closeModal();
     }
-  });
+})

@@ -6,9 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Filmoteka - js-teamproject-team3 </title>
   <link rel="stylesheet" href="./sass/index.scss" />
-  <!-- <script type="module" src="./index.js"></script> -->
+   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self';"> -->
+  
 </head>
 
 <body>
@@ -52,11 +52,13 @@
         </div>
       </div>
     </section>
-    <div id="movies-container"></div>
+    <div id="movies-container">
+    </div>
+     
   </main>
 
   <!-- PAGINATION SECTION -->
-<div class="pagination">
+<!-- <div class="pagination">
 
   <button class="pagination-button previous-page" type="submit" id="prev">&#11164</button>
   <button class="pagination-button first-page" type="submit">...</button>
@@ -67,22 +69,21 @@
   <button class="pagination-button button-e" type="submit">5</button>
   <button class="pagination-button last-page" type="submit">...</button>
   <button class="pagination-button next-page" type="submit" id="next">&#11166</button>
-</div>
+</div> -->
 
  
 
+
+<!-- ❗️❗️❗️ Add partials like so for every page -->
+
+<!-- <include src="partials/task21_loader.html"></include> -->
+<include src="partials/pagination.html"></include>
 <!-- MODAL SECTION -->
 <include src="partials/modal.html"></include>
-
-
-  <!-- ❗️❗️❗️ Add partials like so for every page -->
- 
-  <!-- <include src="partials/task21_loader.html"></include> -->
-  <include src="partials/task4_footer.html"></include>
-  <!-- <include src="partials/modal.html"></include> -->
-
-  <script src="./js/script.js" type="module"></script>
-  <script src="./js/pagination.js" type="module"></script>
+<script src="/src/js/script.js" type="module" defer></script>
+<script src="./js/script.js" type="module"></script>
+<script src="./js/pagination.js" type="module"></script>
+<include src="partials/task4_footer.html"></include>
 </body>
 
 </html>

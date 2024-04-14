@@ -195,16 +195,16 @@ h3{
     gap: 12px;
 }
 
-.watched,
-.queue {
+#watched-btn,
+#queue-btn {
     width: 136px;
     height: 44px;
     border: 1px solid;
     border-radius: 5%;
 }
 
-.watched:hover,
-.queue:hover {
+#watched-btn:hover,
+#queue-btn:hover {
     background-color: orangered;
     border: none;
     cursor: pointer;

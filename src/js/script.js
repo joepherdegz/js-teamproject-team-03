@@ -120,8 +120,10 @@ let lastUrl;
   function getMovies(url) {
     lastUrl = url;
     
-    main.classList.toggle('is-hidden');
-    loader.classList.toggle('is-hidden');
+    // main.classList.toggle('is-hidden');
+    // loader.classList.toggle('is-hidden');
+    main.classList.add('is-hidden');
+    loader.classList.remove('is-hidden');
     
     fetch(url)
     .then(res => res.json())
@@ -133,13 +135,18 @@ let lastUrl;
         nextPage = currentPage + 1;
         prevPage = currentPage - 1;
         totalPages = data.total_pages;
-        main.classList.toggle('is-hidden');
-        loader.classList.toggle('is-hidden');
+
+        // main.classList.toggle('is-hidden');
+        // loader.classList.toggle('is-hidden');
+        main.classList.remove('is-hidden');
+                loader.classList.add('is-hidden');
         
-        document.addEventListener('DOMContentLoaded', function () {
-          const current = document.getElementById('current');
-          current.innerText = currentPage;
-        })
+        // document.addEventListener('DOMContentLoaded', function () {
+        //   const current = document.getElementById('current');
+        //   current.innerText = currentPage;
+        // })
+        const current = document.getElementById('current');
+                current.innerText = currentPage;
         //   if (currentPage <= 1) {
         //   if (prev)  prev.classList.add('disabled');
         //   if (next) next.classList.remove('disabled');
@@ -158,7 +165,13 @@ let lastUrl;
           loader.classList.toggle('is-hidden');
           main.innerHTML = `<h1 class="no-results">No Results Found</h1>`;
         }
-    });
+    })
+    // .catch(error => {
+    //         console.error('Error fetching movies:', error);
+    //         main.classList.remove('is-hidden');
+    //         loader.classList.add('is-hidden');
+    //         main.innerHTML = `<h1 class="error-message">An error occurred while fetching movies.</h1>`;
+    //     });
    
   }
   getMovies(API_URL);

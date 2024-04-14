@@ -92,7 +92,29 @@ function closeModal() {
   
   // PAGINATION
 let lastUrl;
-let prev, next;
+// let prev, next;
+
+ // Add event listeners for prev and next inside this block
+          let  prev = document.getElementById('prev');
+          let next = document.getElementById('next');
+
+            // function for previous page
+    if (prev) {
+      prev.addEventListener('click', () => {
+        if (prevPage > 0) {
+          pageCall(prevPage);
+        }
+      });
+    }
+            // function for the next page
+    if (next) {
+      next.addEventListener('click', () => {
+        if (nextPage <= totalPages) {
+          pageCall(nextPage);
+        }
+      });
+}
+    
   getMovies(API_URL);
   // DISPLAY MOVIE CARDS
   function getMovies(url) {
@@ -135,26 +157,7 @@ let prev, next;
           main.innerHTML = `<h1 class="no-results">No Results Found</h1>`;
         }
     });
-    // Add event listeners for prev and next inside this block
-          let  prev = document.getElementById('prev');
-          let next = document.getElementById('next');
-
-            // function for previous page
-    if (prev) {
-      prev.addEventListener('click', () => {
-        if (prevPage > 0) {
-          pageCall(prevPage);
-        }
-      });
-    }
-            // function for the next page
-    if (next) {
-      next.addEventListener('click', () => {
-        if (nextPage <= totalPages) {
-          pageCall(nextPage);
-        }
-      });
-    }
+   
   }
   getMovies(API_URL);
 

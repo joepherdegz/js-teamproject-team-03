@@ -1,6 +1,6 @@
   const BASE_URL = 'https://api.themoviedb.org/3';
   const API_KEY = 'api_key=b5e824a3d922f68ba211fcf6dbdcb6f5';
-  const API_URL = BASE_URL + '/discover/movie?sort_by-popularity.desc&' + API_KEY;
+  const API_URL = BASE_URL + '/discover/movie?sort_by-popularity.desc&include_adult=false&' + API_KEY;
   const IMG_URL = 'https://image.tmdb.org/t/p/w500';
   const searchURL = BASE_URL + '/search/movie?' + API_KEY;
   const getGenres = BASE_URL + '/genre/movie/list?' + API_KEY;   
@@ -40,14 +40,14 @@ fetch(getGenres)
         // console.error('Error fetching genres:', error);
     });
 
-    fetch(API_URL)
-    .then(response => response.json())
-    .then(data => {
-        showMovies(data.results, genres);
-    })
-    .catch(error => {
-        console.error('Error fetching movies:', error);
-    });
+    // fetch(API_URL)
+    // .then(response => response.json())
+    // .then(data => {
+    //     showMovies(data.results, genres);
+    // })
+    // .catch(error => {
+    //     console.error('Error fetching movies:', error);
+    // });
   // function to open the modal with movie details
 function openModal(movie) {
 

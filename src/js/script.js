@@ -92,38 +92,15 @@ function closeModal() {
   
   // PAGINATION
 let lastUrl;
-// let prev, next;
+let prev, next;
 
- // Add event listeners for prev and next inside this block
-          let  prev = document.getElementById('prev');
-          let next = document.getElementById('next');
-
-            // function for previous page
-    if (prev) {
-      prev.addEventListener('click', () => {
-        if (prevPage > 0) {
-          pageCall(prevPage);
-        }
-      });
-    }
-            // function for the next page
-    if (next) {
-      next.addEventListener('click', () => {
-        if (nextPage <= totalPages) {
-          pageCall(nextPage);
-        }
-      });
-}
-    
   getMovies(API_URL);
   // DISPLAY MOVIE CARDS
   function getMovies(url) {
     lastUrl = url;
     
-    // main.classList.toggle('is-hidden');
-    // loader.classList.toggle('is-hidden');
-    main.classList.add('is-hidden');
-    loader.classList.remove('is-hidden');
+    main.classList.toggle('is-hidden');
+    loader.classList.toggle('is-hidden');
     
     fetch(url)
     .then(res => res.json())
@@ -135,43 +112,30 @@ let lastUrl;
         nextPage = currentPage + 1;
         prevPage = currentPage - 1;
         totalPages = data.total_pages;
-
-        // main.classList.toggle('is-hidden');
-        // loader.classList.toggle('is-hidden');
-        main.classList.remove('is-hidden');
-                loader.classList.add('is-hidden');
+        main.classList.toggle('is-hidden');
+        loader.classList.toggle('is-hidden');
         
-        // document.addEventListener('DOMContentLoaded', function () {
-        //   const current = document.getElementById('current');
-        //   current.innerText = currentPage;
-        // })
-        const current = document.getElementById('current');
-                current.innerText = currentPage;
-        //   if (currentPage <= 1) {
-        //   if (prev)  prev.classList.add('disabled');
-        //   if (next) next.classList.remove('disabled');
-        //   } else if (currentPage >= totalPages) {
-        //   if (prev)  prev.classList.remove('disabled');
-        //   if (next)  next.classList.add('disabled');
-        //   } else {
-        //    if (prev)  prev.classList.remove('disabled');
-        //    if (next)  next.classList.remove('disabled');
-        // }
-        if (prev)  prev.classList.toggle('disabled', currentPage <= 1);
-            if (next)  next.classList.toggle('disabled', currentPage >= totalPages);
+        document.addEventListener('DOMContentLoaded', function () {
+          const current = document.getElementById('current');
+          current.innerText = currentPage;
+        })
+          if (currentPage <= 1) {
+          if (prev)  prev.classList.add('disabled');
+          if (next) next.classList.remove('disabled');
+          } else if (currentPage >= totalPages) {
+          if (prev)  prev.classList.remove('disabled');
+          if (next)  next.classList.add('disabled');
+          } else {
+           if (prev)  prev.classList.remove('disabled');
+           if (next)  next.classList.remove('disabled');
+        }
         
         } else {
           main.classList.toggle('is-hidden');
           loader.classList.toggle('is-hidden');
           main.innerHTML = `<h1 class="no-results">No Results Found</h1>`;
         }
-    })
-    // .catch(error => {
-    //         console.error('Error fetching movies:', error);
-    //         main.classList.remove('is-hidden');
-    //         loader.classList.add('is-hidden');
-    //         main.innerHTML = `<h1 class="error-message">An error occurred while fetching movies.</h1>`;
-    //     });
+    });
    
   }
   getMovies(API_URL);

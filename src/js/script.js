@@ -140,16 +140,18 @@ let lastUrl;
           const current = document.getElementById('current');
           current.innerText = currentPage;
         })
-          if (currentPage <= 1) {
-          if (prev)  prev.classList.add('disabled');
-          if (next) next.classList.remove('disabled');
-          } else if (currentPage >= totalPages) {
-          if (prev)  prev.classList.remove('disabled');
-          if (next)  next.classList.add('disabled');
-          } else {
-           if (prev)  prev.classList.remove('disabled');
-           if (next)  next.classList.remove('disabled');
-        }
+        //   if (currentPage <= 1) {
+        //   if (prev)  prev.classList.add('disabled');
+        //   if (next) next.classList.remove('disabled');
+        //   } else if (currentPage >= totalPages) {
+        //   if (prev)  prev.classList.remove('disabled');
+        //   if (next)  next.classList.add('disabled');
+        //   } else {
+        //    if (prev)  prev.classList.remove('disabled');
+        //    if (next)  next.classList.remove('disabled');
+        // }
+        if (prev)  prev.classList.toggle('disabled', currentPage <= 1);
+            if (next)  next.classList.toggle('disabled', currentPage >= totalPages);
         
         } else {
           main.classList.toggle('is-hidden');

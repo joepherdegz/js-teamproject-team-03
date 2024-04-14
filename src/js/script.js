@@ -136,8 +136,8 @@ let prev, next;
         }
     });
     // Add event listeners for prev and next inside this block
-            prev = document.getElementById('prev');
-            next = document.getElementById('next');
+          let  prev = document.getElementById('prev');
+          let next = document.getElementById('next');
 
             // function for previous page
     if (prev) {

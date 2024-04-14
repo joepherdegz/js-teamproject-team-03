@@ -156,7 +156,8 @@ let prev, next;
       });
     }
   }
-  
+  getMovies(API_URL);
+
   function showMovies(data) {
     main.innerHTML = '';
     data.forEach(movie => {

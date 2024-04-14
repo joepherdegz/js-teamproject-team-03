@@ -1,70 +1,78 @@
-// Retrieve watched and queue arrays from localStorage or initialize them as empty arrays
-let watched = JSON.parse(localStorage.getItem("movie-watched")) || [];
-let queue = JSON.parse(localStorage.getItem("movie-queue")) || [];
+const watchedBtn = document.getElementById('watched-btn');
+const queueBtn = document.getElementById('queue-btn');
+const moviesContainer = document.querySelector('.gallery');
+let watchedMovies = JSON.parse(localStorage.getItem('movie-watched'));
 
-// Function to save watched movies to localStorage
-function saveWatchedMovies() {
-    localStorage.setItem('movie-watched', JSON.stringify(watched));
+// Check if watchedMovies is null or not an array
+if (!watchedMovies || !Array.isArray(watchedMovies)) {
+    watchedMovies = [];
 }
 
-// Function to save queued movies to localStorage
-function saveQueueMovies() {
-    localStorage.setItem('movie-queue', JSON.stringify(queue));
+// Check if queuedMovies is null or not an array
+if (!queuedMovies || !Array.isArray(queuedMovies)) {
+    queuedMovies = [];
 }
 
-// Function to display watched movies in the library
-function displayWatchedMovies() {
-    const watchedContainer = document.getElementById('watched-container');
-    watchedContainer.innerHTML = ''; // Clear previous content
-    
-    watched.forEach(movieTitle => {
-        const movieItem = document.createElement('div');
-        movieItem.textContent = movieTitle;
-        watchedContainer.appendChild(movieItem);
-    });
-}
 
-// Function to display queued movies in the library
-function displayQueueMovies() {
-    const queueContainer = document.getElementById('queue-container');
-    queueContainer.innerHTML = ''; // Clear previous content
-    
-    queue.forEach(movieTitle => {
-        const movieItem = document.createElement('div');
-        movieItem.textContent = movieTitle;
-        queueContainer.appendChild(movieItem);
-    });
-}
 
-// Function to handle form submission
-document.getElementById('lib-buttons').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent default form submission behavior
-
-    const buttonClicked = event.submitter.id; // Get the ID of the button that was clicked
-    const currentMovieTitle = document.getElementById('modal-title').textContent;
-
-    if (buttonClicked === 'watched-btn') {
-        // Handle adding movie to watched list
-        if (!watched.includes(currentMovieTitle)) {
-            watched.push(currentMovieTitle);
-            saveWatchedMovies();
-            displayWatchedMovies();
-        } else {
-            alert(`${currentMovieTitle} has been watched already`);
+let queuedMovies = JSON.parse(localStorage.getItem('movie-queue'));
+watchedBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    getLibMovies(watchedMovies);
+});
+queueBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    getLibMovies(queuedMovies);
+});
+// Load movies whose Ids matched with those stored in the localStorage
+async function getLibMovies(array) {
+    moviesContainer.innerHTML = '';
+    for ( const movieId of array ) {
+        try {
+            if(!isValidMovieId(movieId)) {
+                throw new Error(`Invalid movie ID: ${movieId}`);
+            }
+            const movie = await getMovieDetailsById(movieId);
+            const movieElement = createMovieElement(movie);
+            moviesContainer.appendChild(movieElement);
         }
-    } else if (buttonClicked === 'queue-btn') {
-        // Handle adding movie to queue list
-        if (!queue.includes(currentMovieTitle)) {
-            queue.push(currentMovieTitle);
-            saveQueueMovies();
-            displayQueueMovies();
-        } else {
-            alert(`${currentMovieTitle} has been added to the queue already`);
+        catch (error) {
+            if(error.message === 'Movie not found.') {
+                console.warn(`Movie with ID ${movieId} not found.`);
+            } else {
+                console.error('Failed to display movie:', error);
+            }
         }
     }
-});
-// Call the functions to display watched and queued movies when the page loads
-document.addEventListener('DOMContentLoaded', function() {
-    displayWatchedMovies();
-    displayQueueMovies();
-});
+}
+// Requesting movies using IDs
+async function getMovieDetailsById(movieId) {
+    const API_KEY = "b5e824a3d922f68ba211fcf6dbdcb6f5";
+    const BASE_URL = 'https://api.themoviedb.org/3';
+    const url = `${BASE_URL}/movie/${movieId}?api_key=${API_KEY}`;
+    const response = await fetch(url);
+    if (!response.ok) {
+        if(response.status === 404) {
+            throw new Error('Movie not found.');
+        } else {
+            throw new Error('Failed to fetch movie details: ' + response.statusText);
+        }
+    }
+    const movieDetails = await response.json();
+    return movieDetails;
+}
+// Create movie display
+function createMovieElement(movie) {
+    console.log(movie);
+    return;
+    const element = document.createElement('div');
+    element.classList.add('movie');
+    element.innerHTML = `
+        <img src="${movie.poster_path ? IMG_URL + movie.poster_path : 'http://via.placeholder.com/1080x1500'}";
+        <h3>${movie.title}</h3>
+    `;
+    return element;
+}
+function isValidMovieId(movieId) {
+    return !isNaN(movieId);
+}

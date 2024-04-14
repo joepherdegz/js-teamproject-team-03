@@ -144,17 +144,17 @@ const next = document.getElementById('next');
           if (next) next.classList.remove('disabled');
         }
         prev.addEventListener('click', () => {
-    if (prevPage > 0) {
+        if (prevPage > 0) {
         pageCall(prevPage);
-    }
-});
+        }
+        });
 
-// Event listener for the next page
-next.addEventListener('click', () => {
-    if (nextPage <= totalPages) {
+        // Event listener for the next page
+        next.addEventListener('click', () => {
+        if (nextPage <= totalPages) {
         pageCall(nextPage);
-    }
-});
+          }
+        });
         // } else {
         //   main.classList.toggle('is-hidden');
         //   loader.classList.toggle('is-hidden');

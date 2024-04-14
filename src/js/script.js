@@ -205,18 +205,18 @@ form.addEventListener('submit', e => {
   });
 
   // function for previous page
-  prev.addEventListener('click', () => {
-    if (prevPage > 0) {
-      pageCall(prevPage);
-    }
-  });
+  // prev.addEventListener('click', () => {
+  //   if (prevPage > 0) {
+  //     pageCall(prevPage);
+  //   }
+  // });
 
-  // function for the next page
-  next.addEventListener('click', () => {
-    if (nextPage <= totalPages) {
-      pageCall(nextPage);
-    }
-  });
+  // // function for the next page
+  // next.addEventListener('click', () => {
+  //   if (nextPage <= totalPages) {
+  //     pageCall(nextPage);
+  //   }
+  // });
 
 export function pageCall(page) {
     let urlSplit = lastUrl.split('?');

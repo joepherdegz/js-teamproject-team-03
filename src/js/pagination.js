@@ -1,5 +1,6 @@
 import { pageCall } from './script.js';
 
+
 const totalPages = 20; 
 const paginationContainer = document.querySelector('.pagination');
 
@@ -8,16 +9,16 @@ function generatePaginationButtons(currentPage) {
   let buttonsHTML = '';
   const numButtonsToShow = 5; // Number of pagination buttons to show
 
-  // let startPage = 1;
-  if (currentPage < 3) {
+  let startPage = 1;
+  if (currentPage <= 3) {
     startPage = 1;
-  } else if (currentPage >= totalPages - 2) {
+  } else if (currentPage >= totalPages - 1) {
     startPage = totalPages - numButtonsToShow + 1;
   } else {
     startPage = currentPage - 2;
-    // if (startPage % 2 === 0) {
-    //   startPage -= 1;
-    // }
+    if (startPage % 2 === 0) {
+      startPage -= 1;
+    }
   }
 
   if (startPage > 1) {

@@ -92,7 +92,11 @@ function closeModal() {
   
   // PAGINATION
 let lastUrl;
-let prev, next;
+// let prev, next;
+let currentPage = 1; // Initialize currentPage variable
+let nextPage, prevPage, totalPages;
+const prev = document.getElementById('prev');
+const next = document.getElementById('next');
 
   getMovies(API_URL);
   // DISPLAY MOVIE CARDS
@@ -114,27 +118,49 @@ let prev, next;
         totalPages = data.total_pages;
         main.classList.toggle('is-hidden');
         loader.classList.toggle('is-hidden');
+
+        updatePaginationButtons(); // Update pagination buttons
         
-        document.addEventListener('DOMContentLoaded', function () {
-          const current = document.getElementById('current');
-          current.innerText = currentPage;
-        })
-          if (currentPage <= 1) {
-          if (prev)  prev.classList.add('disabled');
-          if (next) next.classList.remove('disabled');
-          } else if (currentPage >= totalPages) {
-          if (prev)  prev.classList.remove('disabled');
-          if (next)  next.classList.add('disabled');
-          } else {
-           if (prev)  prev.classList.remove('disabled');
-           if (next)  next.classList.remove('disabled');
-        }
-        
+        // document.addEventListener('DOMContentLoaded', function () {
+        //   const current = document.getElementById('current');
+        //   current.innerText = currentPage;
+        // })
         } else {
-          main.classList.toggle('is-hidden');
-          loader.classList.toggle('is-hidden');
-          main.innerHTML = `<h1 class="no-results">No Results Found</h1>`;
+            main.classList.toggle('is-hidden');
+            loader.classList.toggle('is-hidden');
+            main.innerHTML = `<h1 class="no-results">No Results Found</h1>`;
         }
+    
+ 
+      function updatePaginationButtons() {
+        if (currentPage <= 1) {
+          if (prev) prev.classList.add('disabled');
+          if (next) next.classList.remove('disabled');
+        } else if (currentPage >= totalPages) {
+          if (prev) prev.classList.remove('disabled');
+          if (next) next.classList.add('disabled');
+        } else {
+          if (prev) prev.classList.remove('disabled');
+          if (next) next.classList.remove('disabled');
+        }
+        prev.addEventListener('click', () => {
+    if (prevPage > 0) {
+        pageCall(prevPage);
+    }
+});
+
+// Event listener for the next page
+next.addEventListener('click', () => {
+    if (nextPage <= totalPages) {
+        pageCall(nextPage);
+    }
+});
+        // } else {
+        //   main.classList.toggle('is-hidden');
+        //   loader.classList.toggle('is-hidden');
+        //   main.innerHTML = `<h1 class="no-results">No Results Found</h1>`;
+        // }
+      }
     });
    
   }
